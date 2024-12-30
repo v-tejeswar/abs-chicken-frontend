@@ -30,7 +30,7 @@ export default function AdminDashboard() {
   const [deniedReports, setDeniedReports] = useState<BillingForm[]>([]);
   const [approvedReports, setApprovedReports] = useState<BillingForm[]>([]);
   const [selectedReport, setSelectedReport] = useState<BillingForm | null>(null);
-  const token = localStorage.getItem("access_token");
+  const [token, setToken] = useState<any>("");
 
   useEffect(() => {
     const userData = getUserData();
@@ -39,7 +39,10 @@ export default function AdminDashboard() {
       setReports(userData.reports);
       setPendingReports(userData.reports.filter((item: { status: string; }) => item.status === 'pending'));
       setDeniedReports(userData.reports.filter((item: { status: string; }) => item.status === 'denied'));
-      setApprovedReports(userData.reports.filter((item: { status: string; }) => item.status === 'approved'))
+      setApprovedReports(userData.reports.filter((item: { status: string; }) => item.status === 'approved'));
+      if (typeof window !== "undefined") {
+        setToken(localStorage.getItem("access_token"));
+      }
     }
   }, []);
 

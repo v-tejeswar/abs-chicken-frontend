@@ -33,7 +33,7 @@ export default function UserDashboard() {
   const [deniedReports, setDeniedReports] = useState<BillingForm[]>([]);
   const [approvedReports, setApprovedReports] = useState<BillingForm[]>([]);
   const [selectedReport, setSelectedReport] = useState<BillingForm | any>(null);
-  const token = localStorage.getItem("access_token");
+  const [token, setToken] = useState<any>("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [submitReportDialogOpen, setSubmitReportDialogOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -46,7 +46,6 @@ export default function UserDashboard() {
   const [updatedReport, setUpdatedReport] = useState(selectedReport);
   const nonEditableFields = ["report_date", "id", "status", "admin_comments", "user", "created_at"];
 
-
   useEffect(() => {
     const userData = getUserData();
     if (userData) {
@@ -55,7 +54,10 @@ export default function UserDashboard() {
       setUserReports(userData.reports);
       setPendingReports(userData.reports.filter((item: { status: string; }) => item.status === 'pending'));
       setDeniedReports(userData.reports.filter((item: { status: string; }) => item.status === 'denied'));
-      setApprovedReports(userData.reports.filter((item: { status: string; }) => item.status === 'approved'))
+      setApprovedReports(userData.reports.filter((item: { status: string; }) => item.status === 'approved'));
+      if (typeof window !== "undefined") {
+        setToken(localStorage.getItem("access_token"));
+      }
     }
   }, []);
 
