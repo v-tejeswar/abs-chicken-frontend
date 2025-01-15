@@ -30,9 +30,8 @@ export const ApprovalHistory: React.FC<ApprovalHistoryProps> = ({
         <CardTitle>Approval History</CardTitle>
         <Button
           onClick={fetchApprovalHistory}
-          className={`bg-blue-500 text-white px-4 py-2 rounded-md ${
-            isRefreshing ? "bg-gray-400 cursor-not-allowed" : ""
-          }`}
+          className={`bg-blue-500 text-white px-4 py-2 rounded-md ${isRefreshing ? "bg-gray-400 cursor-not-allowed" : ""
+            }`}
           disabled={isRefreshing}
         >
           {isRefreshing ? (
@@ -52,28 +51,37 @@ export const ApprovalHistory: React.FC<ApprovalHistoryProps> = ({
             </TableRow>
           </TableHeader>
           <TableBody>
-            {approvalHistory.map((historyItem) => (
-              <TableRow key={historyItem.id}>
-                <TableCell className="text-center">
-                  <Button
-                    variant="link"
-                    onClick={() => handleReportClick(historyItem.report_id)}
-                  >
-                    {historyItem.report_id}
-                  </Button>
-                </TableCell>
-                <TableCell className="text-center">{historyItem.approved_by}</TableCell>
-                <TableCell className="text-center">
-                  {new Date(historyItem.timestamp)
-                    .toLocaleDateString("en-GB", {
-                      day: "2-digit",
-                      month: "short",
-                      year: "numeric",
-                    })
-                    .replace(/\s/g, "-")}
+            {approvalHistory && approvalHistory.length > 0 ? (
+
+              approvalHistory.map((historyItem) => (
+                <TableRow key={historyItem.id}>
+                  <TableCell className="text-center">
+                    <Button
+                      variant="link"
+                      onClick={() => handleReportClick(historyItem.report_id)}
+                    >
+                      {historyItem.report_id}
+                    </Button>
+                  </TableCell>
+                  <TableCell className="text-center">{historyItem.approved_by}</TableCell>
+                  <TableCell className="text-center">
+                    {new Date(historyItem.timestamp)
+                      .toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })
+                      .replace(/\s/g, "-")}
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={3} style={{ textAlign: "center" }}>
+                  Reports not available
                 </TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </CardContent>

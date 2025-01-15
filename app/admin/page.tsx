@@ -123,7 +123,7 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="flex h-screen bg-absBlack">
+    <div className="container my-auto flex h-screen bg-absBlack">
       <div className="flex-1 bg-absBlack">
         {/* Header */}
         <header className="flex items-center justify-between p-4 bg-absYellow shadow-md">
@@ -195,9 +195,9 @@ export default function AdminDashboard() {
                 </CardTitle>
                 <CardDescription>
                   {activeTab === "pending"
-                    ? "Review and approve pending forms."
+                    ? "Review and approve pending report."
                     : activeTab === "history"
-                      ? "View previously approved or denied forms."
+                      ? "View previously approved reports"
                       : activeTab === "addUser"
                         ? ""
                         : activeTab === "updateUser"
@@ -214,7 +214,7 @@ export default function AdminDashboard() {
                 )}
                 {activeTab === "addUser" && (<AddUserForm />)}
                 {activeTab === "updateUser" && (
-                  <div>Update user Content Here</div>
+                  <div>Update user details</div>
                 )}
                 {activeTab === "adminProfile" && (
                   <AdminProfileForm user={currentUser} />

@@ -408,6 +408,7 @@ export default function UserDashboard() {
           <TabsContent value="deniedReport">
             <UserReports
               reports={deniedReports}
+              title={"Rejected"}
               fetchApprovalHistory={fetchApprovalHistory} // Replace with the actual fetch function for rejected reports
               handleReportClick={handleReportClick}
               isRefreshing={refresh}
@@ -416,6 +417,7 @@ export default function UserDashboard() {
           <TabsContent value="pendingReport">
             <UserReports
               reports={pendingReports}
+              title={"Pending"}
               fetchApprovalHistory={fetchApprovalHistory} // Replace with the actual fetch function for rejected reports
               handleReportClick={handleReportClick}
               isRefreshing={refresh}

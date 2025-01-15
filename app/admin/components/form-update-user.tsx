@@ -15,8 +15,7 @@ export const UpdateUserForm: FC<UpdateUserFormProps> = ({ isOpen, onClose }) => 
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center whitespace-nowrap bg-black bg-opacity-50">
-      <div className="bg-white p-8 rounded-md w-96">
+    <div className="bg-white rounded-lg shadow-md w-full max-w-lg">
         <h2 className="text-xl mb-4">Update User</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
@@ -48,6 +47,5 @@ export const UpdateUserForm: FC<UpdateUserFormProps> = ({ isOpen, onClose }) => 
           Close
         </button>
       </div>
-    </div>
   );
 };

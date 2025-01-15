@@ -7,6 +7,7 @@ import { BillingForm } from "@/lib/types";
 
 interface PendingReportsProps {
     reports: BillingForm[];
+    title: string;
     fetchApprovalHistory: () => void;
   handleReportClick: (reportId: number) => void;
   isRefreshing: boolean;
@@ -14,6 +15,7 @@ interface PendingReportsProps {
 
 export const UserReports: React.FC<PendingReportsProps> = ({
     reports,
+    title,
     fetchApprovalHistory,
   handleReportClick,
   isRefreshing,
@@ -21,7 +23,7 @@ export const UserReports: React.FC<PendingReportsProps> = ({
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="left-0">Pending Reports</CardTitle>
+        <CardTitle className="left-0">{title} Reports</CardTitle>
         <Button
           onClick={fetchApprovalHistory}
           className={`bg-blue-500 text-white px-4 py-2 rounded-md ${
